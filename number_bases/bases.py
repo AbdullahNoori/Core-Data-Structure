@@ -19,10 +19,22 @@ def decode(digits, base):
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # TODO: Decode digits from binary (base 2)
     # ...
+
     # TODO: Decode digits from hexadecimal (base 16)
-    # ...
+    # ...vn
     # TODO: Decode digits from any base (2 up to 36)
     # ...
+digits = digits[::1]
+decimaal_num = 0
+
+for i in range(len(digits)):
+    digits = digits[i]
+    print(digits)
+    #digits x base ^ power
+    digit =int(digit, 16)
+    decimal_num += digit * (base ** i)
+return decimal_num
+
 
 
 def encode(number, base):
@@ -40,6 +52,19 @@ def encode(number, base):
     # ...
     # TODO: Encode number in any base (2 up to 36)
     # ...
+
+    encodedValue = ''
+
+    while number > 0:
+        number, remainder = divmod(number, base)
+        if remainder >= 10:
+            encodedValue += chr(remainder + 87)
+        else: 
+            encodedValue += str(remainder)
+    encodedValue = encodedValue[::-1]
+    return encodedValue
+
+
 
 
 def convert(digits, base1, base2):
@@ -59,7 +84,8 @@ def convert(digits, base1, base2):
     # ...
     # TODO: Convert digits from any base to any base (2 up to 36)
     # ...
-
+    convertedValue = encode(decode(digits, base1), base2) #first calls decode function followed by encode function
+    return convertedValue
 
 def main():
     """Read command-line arguments and convert given digits between bases."""
